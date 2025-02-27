@@ -6,7 +6,7 @@ class Matrix
   def print_board
     matrix.each do |row|
       row.each do |ele|
-        print ele + ' | '
+        puts "#{ele} | "
       end
       puts ''
     end

@@ -9,36 +9,35 @@ class Game
   end
 
   def start_game
-    puts 'Enter player 1 name'
-    @player1.name = gets.chomp
-    puts "#{@player1.name} choose your mark"
-    @player1.mark = gets.chomp
+    set_player(@player1)
+    set_player(@player2)
+    run_game
+  end
 
-    puts 'Enter player 2 name'
-    @player2.name = gets.chomp
-    puts "#{@player2.name} choose your mark"
-    @player2.mark = gets.chomp
+  def set_player=(player)
+    puts 'Enter player name'
+    player.name = gets.chomp
+    puts "#{player.name} choose your mark"
+    player.mark = gets.chomp
+  end
 
-    self.run_game
+  def ask_player(player)
+    puts "#{player.name} enter row and column"
+    row, col = gets.chomp.split(' ')
+    @matrix.update_board(row.to_i, col.to_i, player.mark)
   end
 
   def run_game
-    loop do 
+    loop do
       @matrix.print_board
-      puts "#{@player1.name} enter row and column"
-      row, col = gets.chomp.split(' ')
-      @matrix.update_board(row.to_i, col.to_i, @player1.mark)
-
+      ask_player(@player1)
       @matrix.print_board
-      puts "#{@player2.name} enter row and column"
-      row, col = gets.chomp.split(' ')
-      @matrix.update_board(row.to_i, col.to_i, @player2.mark)
-
-      self.check_win
+      ask_player(@player2)
+      break if player_won?
     end
   end
 
-  def check_win
+  def player_won?
     
   end
 end
