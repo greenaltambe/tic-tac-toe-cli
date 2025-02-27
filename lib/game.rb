@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'matrix'
 require_relative 'player'
 
@@ -63,7 +65,7 @@ class Game
 
   def game_end?
     return true if someone_win?
-    return true if matrix.is_full? && puts('The game is a draw')
+    return true if matrix.full? && puts('The game is a draw')
 
     false
   end

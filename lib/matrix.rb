@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Matrix
   def initialize
     @matrix = Array.new(3) { Array.new(3) }
@@ -14,5 +16,9 @@ class Matrix
 
   def update_board(row, col, mark)
     @matrix[row][col] = mark
+  end
+
+  def full?
+    @matrix.all? { |row| row.all? { |ele| ele != '' } }
   end
 end
