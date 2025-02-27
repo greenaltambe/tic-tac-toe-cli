@@ -13,8 +13,8 @@ class Game
   end
 
   def start_game
-    set_player(@player1)
-    set_player(@player2)
+    self.set_player = @player1
+    self.set_player = @player2
     run_game
   end
 
