@@ -11,7 +11,7 @@ class Matrix
   end
 
   def print_board
-    puts '\n================================='
+    puts '================================='
     @matrix.each do |row|
       row.each do |ele|
         print "#{ele}  " if ele != ''
@@ -19,7 +19,7 @@ class Matrix
       end
       puts ''
     end
-    puts '=================================\n'
+    puts '================================='
   end
 
   def update_board(row, col, mark)

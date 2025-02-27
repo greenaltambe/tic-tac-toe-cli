@@ -25,13 +25,24 @@ class Game
     player.mark = gets.chomp
   end
 
+  def out_of_bounds?(row, col)
+    row > 2 || col > 2
+  end
+
+  def input_valid?(row, col)
+    true unless out_of_bounds?(row, col) || @matrix.used?(row, col)
+  end
+
   def ask_player(player)
     puts "#{player.name} enter row and column separated by a space: "
     row, col = gets.chomp.split(' ')
-    if @matrix.used?(row.to_i, col.to_i)
-      puts 'Position already used'
-      ask_player(player)
+
+    until input_valid?(row, col)
+      puts 'Invalid input'
+      puts "#{player.name} enter row and column separated by a space: "
+      row, col = gets.chomp.split(' ')
     end
+
     @matrix.update_board(row.to_i, col.to_i, player.mark)
   end
 
