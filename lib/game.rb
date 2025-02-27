@@ -19,15 +19,19 @@ class Game
   end
 
   def set_player=(player)
-    puts 'Enter player name'
+    print 'Enter player name: '
     player.name = gets.chomp
-    puts "#{player.name} choose your mark"
+    print "#{player.name} choose your mark: "
     player.mark = gets.chomp
   end
 
   def ask_player(player)
-    puts "#{player.name} enter row and column"
+    puts "#{player.name} enter row and column separated by a space: "
     row, col = gets.chomp.split(' ')
+    if @matrix.used?(row.to_i, col.to_i)
+      puts 'Position already used'
+      ask_player(player)
+    end
     @matrix.update_board(row.to_i, col.to_i, player.mark)
   end
 
@@ -36,6 +40,9 @@ class Game
       @matrix.print_board
       ask_player(@player1)
       @matrix.print_board
+
+      break if game_end?
+
       ask_player(@player2)
       break if game_end?
     end
@@ -60,14 +67,17 @@ class Game
   def someone_win?
     if player_win?(@player1)
       puts "#{@player1.name} wins"
+      return true
     elsif player_win?(@player2)
       puts "#{@player2.name} wins"
+      return true
     end
+    false
   end
 
   def game_end?
     return true if someone_win?
-    return true if matrix.full? && puts('The game is a draw')
+    return true if @matrix.full? && puts('The game is a draw')
 
     false
   end
