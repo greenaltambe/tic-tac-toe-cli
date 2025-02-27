@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Represents a 3x3 matrix
+# Provides methods for printing the matrix, updating the matrix, and checking if the matrix is full
 class Matrix
   def initialize
     @matrix = Array.new(3) { Array.new(3) }

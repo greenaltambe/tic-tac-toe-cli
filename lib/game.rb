@@ -3,6 +3,8 @@
 require_relative 'matrix'
 require_relative 'player'
 
+# Represents a game of Tic Tac Toe.
+# Provides methods for initializing the game, setting players, and running the game.
 class Game
   def initialize
     @matrix = Matrix.new
