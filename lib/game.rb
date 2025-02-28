@@ -18,6 +18,8 @@ class Game
     run_game
   end
 
+  private
+
   def set_player=(player)
     print 'Enter player name: '
     player.name = gets.chomp
@@ -37,7 +39,7 @@ class Game
     puts "#{player.name} enter row and column separated by a space: "
     row, col = gets.chomp.split(' ')
 
-    until input_valid?(row, col)
+    until input_valid?(row.to_i, col.to_i)
       puts 'Invalid input'
       puts "#{player.name} enter row and column separated by a space: "
       row, col = gets.chomp.split(' ')
